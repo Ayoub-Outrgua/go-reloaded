@@ -1,4 +1,4 @@
-package goreload
+package functions
 
 func CleanStr(byt []byte) []string {
 	slice := []string{}
