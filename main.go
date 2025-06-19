@@ -27,29 +27,64 @@ func main() {
 		return
 	}
 
-	slice := functions.CleanStr(file)
-	resSlice := []string{}
+	slice := strings.Fields(string(file))
+
 	for i := 0; i < len(slice); i++ {
-		if i+1 < len(slice) && (slice[i+1] == "(up)") {
-			continue
-		} else if slice[i] == "(up)" {
+		if slice[i] == "(up)" {
 			if i != 0 {
-				resSlice = append(resSlice, strings.ToUpper(slice[i-1]))
+				slice[i-1] = strings.ToUpper(slice[i-1])
+			} else {
+				slice[i] = ""
 			}
-		} else if i+1 < len(slice) && (slice[i+1] == "(low)") {
-			continue
+			slice[i] = ""
 		} else if slice[i] == "(low)" {
 			if i != 0 {
-				resSlice = append(resSlice, strings.ToLower(slice[i-1]))
+				slice[i-1] = strings.ToLower(slice[i-1])
+			} else {
+				slice[i] = ""
 			}
-		} else {
-			resSlice = append(resSlice, slice[i])
+			slice[i] = ""
+		} else if slice[i] == "(cap)" {
+			if i != 0 {
+				slice[i-1] = functions.Capitalized(slice[i-1])
+			} else {
+				slice[i] = ""
+			}
+			slice[i] = ""
 		}
 	}
 
+	// resSlice := []string{}
+	// for i := 0; i < len(slice); i++ {
+	// 	if i+1 < len(slice) && (slice[i+1] == "(up)") {
+	// 		continue
+	// 	} else if slice[i] == "(up)" {
+	// 		if i != 0 {
+	// 			resSlice = append(resSlice, strings.ToUpper(slice[i-1]))
+	// 		}
+	// 	} else if i+1 < len(slice) && (slice[i+1] == "(low)") {
+	// 		continue
+	// 	} else if slice[i] == "(low)" {
+	// 		if i != 0 {
+	// 			resSlice = append(resSlice, strings.ToLower(slice[i-1]))
+	// 		}
+	// 	} else if i+1 < len(slice) && (slice[i+1] == "(cap)") {
+	// 		continue
+	// 	} else if slice[i] == "(cap)" {
+	// 		if i != 0 {
+	// 			resSlice = append(resSlice, functions.Capitalized(slice[i-1]))
+	// 		}
+	// 	} else {
+	// 		resSlice = append(resSlice, slice[i])
+	// 	}
+	// }
+
 	fmt.Println(string(file))
 	fmt.Println(slice)
-	fmt.Println(resSlice)
+	gg := strings.Join(slice, " ")
+	slice1 := strings.Fields(gg)
+	fmt.Println(slice1)
+	// fmt.Println(resSlice)
 
 	erre := os.WriteFile(outputFile, file, 0o644)
 	if erre != nil {
