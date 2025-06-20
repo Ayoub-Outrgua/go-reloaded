@@ -70,7 +70,7 @@ func main() {
 			if i != 0 {
 				num, err := strconv.ParseInt(slice[i-1], 16, 64)
 				if err != nil {
-					fmt.Println("Error: this is not valid bin")
+					fmt.Println("Error: this is not valid hex")
 					return
 				}
 				slice[i-1] = strconv.Itoa(int(num))
