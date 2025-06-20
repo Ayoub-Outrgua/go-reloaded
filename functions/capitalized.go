@@ -1,14 +1,21 @@
 package functions
 
-import "strings"
+import (
+	"strings"
+	"unicode"
+)
 
 func Capitalized(s string) string {
 	str := ""
-	for i, v := range s {
-		if i == 0 {
+	check := false
+	for _, v := range s {
+		if unicode.IsLetter(v) && !check {
 			str += strings.ToUpper(string(v))
-		} else {
+			check = true
+		} else if check {
 			str += strings.ToLower(string(v))
+		} else if !(unicode.IsLetter(v)) {
+			str += string(v)
 		}
 	}
 	return str

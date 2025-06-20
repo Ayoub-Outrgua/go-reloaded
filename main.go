@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 
 	"goreload/functions"
@@ -28,65 +29,62 @@ func main() {
 	}
 
 	slice := strings.Fields(string(file))
+	fmt.Println(string(file))
+	fmt.Println(slice)
 
 	for i := 0; i < len(slice); i++ {
 		if slice[i] == "(up)" {
 			if i != 0 {
 				slice[i-1] = strings.ToUpper(slice[i-1])
-			} else {
-				slice[i] = ""
 			}
 			slice[i] = ""
+			slice = functions.CLeanSlice(slice)
+			i--
 		} else if slice[i] == "(low)" {
 			if i != 0 {
 				slice[i-1] = strings.ToLower(slice[i-1])
-			} else {
-				slice[i] = ""
 			}
 			slice[i] = ""
+			slice = functions.CLeanSlice(slice)
+			i--
 		} else if slice[i] == "(cap)" {
 			if i != 0 {
 				slice[i-1] = functions.Capitalized(slice[i-1])
-			} else {
-				slice[i] = ""
 			}
 			slice[i] = ""
+			slice = functions.CLeanSlice(slice)
+			i--
+		} else if slice[i] == "(bin)" {
+			if i != 0 {
+				num, err := strconv.ParseInt(slice[i-1], 2, 64)
+				if err != nil {
+					fmt.Println("Error: this is not valid bin")
+					return
+				}
+				slice[i-1] = strconv.Itoa(int(num))
+			}
+			slice[i] = ""
+			slice = functions.CLeanSlice(slice)
+			i--
+		} else if slice[i] == "(hex)" {
+			if i != 0 {
+				num, err := strconv.ParseInt(slice[i-1], 16, 64)
+				if err != nil {
+					fmt.Println("Error: this is not valid bin")
+					return
+				}
+				slice[i-1] = strconv.Itoa(int(num))
+			}
+			slice[i] = ""
+			slice = functions.CLeanSlice(slice)
+			i--
 		}
 	}
-
-	// resSlice := []string{}
-	// for i := 0; i < len(slice); i++ {
-	// 	if i+1 < len(slice) && (slice[i+1] == "(up)") {
-	// 		continue
-	// 	} else if slice[i] == "(up)" {
-	// 		if i != 0 {
-	// 			resSlice = append(resSlice, strings.ToUpper(slice[i-1]))
-	// 		}
-	// 	} else if i+1 < len(slice) && (slice[i+1] == "(low)") {
-	// 		continue
-	// 	} else if slice[i] == "(low)" {
-	// 		if i != 0 {
-	// 			resSlice = append(resSlice, strings.ToLower(slice[i-1]))
-	// 		}
-	// 	} else if i+1 < len(slice) && (slice[i+1] == "(cap)") {
-	// 		continue
-	// 	} else if slice[i] == "(cap)" {
-	// 		if i != 0 {
-	// 			resSlice = append(resSlice, functions.Capitalized(slice[i-1]))
-	// 		}
-	// 	} else {
-	// 		resSlice = append(resSlice, slice[i])
-	// 	}
-	// }
-
-	fmt.Println(string(file))
+	slice = functions.CLeanSlice(slice)
 	fmt.Println(slice)
-	gg := strings.Join(slice, " ")
-	slice1 := strings.Fields(gg)
-	fmt.Println(slice1)
-	// fmt.Println(resSlice)
-
-	erre := os.WriteFile(outputFile, file, 0o644)
+	combined := strings.Join(slice, " ")
+	byteSlice := []byte(combined)
+	erre := os.WriteFile(outputFile, byteSlice, 0o644)
 	if erre != nil {
 		fmt.Println("error in write file")
 		return
