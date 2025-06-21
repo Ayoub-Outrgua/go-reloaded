@@ -78,6 +78,80 @@ func main() {
 			slice[i] = ""
 			slice = functions.CLeanSlice(slice)
 			i--
+		} else if slice[i] == "(up," || slice[i] == "(low," || slice[i] == "(cap," {
+			check := false
+			if i+1 < len(slice) {
+				if !(strings.Contains(slice[i+1], ")")) {
+					fmt.Println("Error: this is not valid flag )")
+					// return
+					check = true
+				}
+				nb := strings.TrimRight(slice[i+1], ")")
+				number, err := strconv.Atoi(string(nb))
+				if err != nil {
+					fmt.Println("Error: this is not valid number")
+					return
+				}
+				if slice[i] == "(low," && !check {
+					if number >= len(slice[:i]) {
+						for j := len(slice[:i]); j > 0; j-- {
+							slice[j-1] = strings.ToLower(slice[j-1])
+						}
+					} else {
+						for j := len(slice[:i]); j > 0; j-- {
+							if number > 0 {
+								slice[j-1] = strings.ToLower(slice[j-1])
+								number--
+							} else {
+								break
+							}
+						}
+					}
+					slice[i] = ""
+					slice[i+1] = ""
+					slice = functions.CLeanSlice(slice)
+					i--
+				} else if slice[i] == "(up," && !check {
+					if number >= len(slice[:i]) {
+						for j := len(slice[:i]); j > 0; j-- {
+							slice[j-1] = strings.ToUpper(slice[j-1])
+						}
+					} else {
+						for j := len(slice[:i]); j > 0; j-- {
+							if number > 0 {
+								slice[j-1] = strings.ToUpper(slice[j-1])
+								number--
+							} else {
+								break
+							}
+						}
+					}
+					slice[i] = ""
+					slice[i+1] = ""
+					slice = functions.CLeanSlice(slice)
+					i--
+				} else if slice[i] == "(cap," && !check {
+					if number >= len(slice[:i]) {
+						for j := len(slice[:i]); j > 0; j-- {
+							slice[j-1] = functions.Capitalized(slice[j-1])
+						}
+					} else {
+						for j := len(slice[:i]); j > 0; j-- {
+							if number > 0 {
+								slice[j-1] = functions.Capitalized(slice[j-1])
+								number--
+							} else {
+								break
+							}
+						}
+					}
+					slice[i] = ""
+					slice[i+1] = ""
+					slice = functions.CLeanSlice(slice)
+					i--
+				}
+
+			}
 		}
 	}
 	slice = functions.CLeanSlice(slice)
