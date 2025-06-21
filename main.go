@@ -56,24 +56,32 @@ func main() {
 			i--
 		} else if slice[i] == "(bin)" {
 			if i != 0 {
+				check := false
 				num, err := strconv.ParseInt(slice[i-1], 2, 64)
 				if err != nil {
-					fmt.Println("Error: this is not valid bin")
-					return
+					// fmt.Println("Error: this is not valid bin")
+					check = true
+					// return
 				}
-				slice[i-1] = strconv.Itoa(int(num))
+				if !check {
+					slice[i-1] = strconv.Itoa(int(num))
+				}
 			}
 			slice[i] = ""
 			slice = functions.CLeanSlice(slice)
 			i--
 		} else if slice[i] == "(hex)" {
 			if i != 0 {
+				check := false
 				num, err := strconv.ParseInt(slice[i-1], 16, 64)
 				if err != nil {
-					fmt.Println("Error: this is not valid hex")
-					return
+					// fmt.Println("Error: this is not valid hex")
+					check = true
+					// return
 				}
-				slice[i-1] = strconv.Itoa(int(num))
+				if !check {
+					slice[i-1] = strconv.Itoa(int(num))
+				}
 			}
 			slice[i] = ""
 			slice = functions.CLeanSlice(slice)
@@ -82,15 +90,16 @@ func main() {
 			check := false
 			if i+1 < len(slice) {
 				if !(strings.Contains(slice[i+1], ")")) {
-					fmt.Println("Error: this is not valid flag )")
+					// fmt.Println("Error: this is not valid flag )")
 					// return
 					check = true
 				}
 				nb := strings.TrimRight(slice[i+1], ")")
 				number, err := strconv.Atoi(string(nb))
 				if err != nil {
-					fmt.Println("Error: this is not valid number")
-					return
+					// fmt.Println("Error: this is not valid number")
+					continue
+					// return
 				}
 				if slice[i] == "(low," && !check {
 					if number >= len(slice[:i]) {
@@ -150,7 +159,6 @@ func main() {
 					slice = functions.CLeanSlice(slice)
 					i--
 				}
-
 			}
 		}
 	}
