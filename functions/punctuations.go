@@ -1,7 +1,5 @@
 package functions
 
-import "fmt"
-
 func Punctuations(slice []string) []string {
 	for i := 0; i < len(slice); i++ {
 		// fmt.Println("slice [i] befor --- : ", slice[i])
@@ -43,10 +41,10 @@ func Punctuations(slice []string) []string {
 				slice[i] = word[:index+1]
 				endSlice := slice[i+1:]
 				addToSlice := []string{word[index+1:]}
-				fmt.Println("slice [i] after +++ : ", slice[i])
-				fmt.Println("endSlice : ", endSlice)
-				fmt.Println("slice[:i+1] : ", slice[:i+1])
-				fmt.Println("addToSlice : ", addToSlice)
+				// fmt.Println("slice [i] after +++ : ", slice[i])
+				// fmt.Println("endSlice : ", endSlice)
+				// fmt.Println("slice[:i+1] : ", slice[:i+1])
+				// fmt.Println("addToSlice : ", addToSlice)
 				slice = append(slice[:i+1], append(addToSlice, endSlice...)...)
 				i--
 			}
