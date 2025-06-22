@@ -25,7 +25,7 @@ func Punctuations(slice []string) []string {
 
 		if check {
 			if index == 0 && len(word) > 1 {
-				if i-1 > 0 {
+				if i-1 >= 0 {
 					slice[i-1] = slice[i-1] + string(word[0])
 					slice[i] = slice[i][1:]
 					i--
