@@ -32,6 +32,8 @@ func main() {
 	fmt.Println(string(file))
 	fmt.Println(slice)
 
+	slice = functions.Punctuations(slice)
+	fmt.Println("slice befor:", slice)
 	for i := 0; i < len(slice); i++ {
 		if slice[i] == "(up)" {
 			if i != 0 {
