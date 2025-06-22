@@ -1,6 +1,8 @@
 package functions
 
-import "strings"
+import (
+	"strings"
+)
 
 func Contains(word string) (bool, int) {
 	index := 0
