@@ -9,17 +9,19 @@ import (
 )
 
 func main() {
-	if len(os.Args) != 3 {
-		fmt.Println("the args are not exist!")
-		return
-	}
+	// if len(os.Args) != 3 {
+	// 	fmt.Println("the args are not exist!")
+	// 	return
+	// }
 
-	inputFile := os.Args[1]
-	outputFile := os.Args[2]
-	if !strings.HasSuffix(outputFile, ".txt") || !strings.HasSuffix(inputFile, ".txt") {
-		fmt.Println("hdkfj")
-		return
-	}
+	// inputFile := os.Args[1]
+	// outputFile := os.Args[2]
+	inputFile := "sample.txt"
+	outputFile := "result.txt"
+	// if !strings.HasSuffix(outputFile, ".txt") || !strings.HasSuffix(inputFile, ".txt") {
+	// 	fmt.Println("hdkfj")
+	// 	return
+	// }
 
 	file, err := os.ReadFile(inputFile)
 	if err != nil {
