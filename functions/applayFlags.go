@@ -5,7 +5,8 @@ import (
 	"strings"
 )
 
-func ApplayFlags(slice []string) []string {
+func ApplayFlag(slice []string) []string {
+
 	for i := 0; i < len(slice); i++ {
 		if slice[i] == "(up)" {
 			if i != 0 {

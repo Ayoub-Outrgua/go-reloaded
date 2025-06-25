@@ -1,29 +1,29 @@
 package functions
 
-import (
-	"strings"
-)
+// import (
+// 	"strings"
+// )
 
-func Contains(word string) bool {
-	// index := 0
-	if strings.Contains(word, ".") {
-		// index = strings.Index(word, ".")
-		return true
-	} else if strings.Contains(word, ",") {
-		// index = strings.Index(word, ",")
-		return true
-	} else if strings.Contains(word, "!") {
-		// index = strings.Index(word, "!")
-		return true
-	} else if strings.Contains(word, "?") {
-		// index = strings.Index(word, "?")
-		return true
-	} else if strings.Contains(word, ":") {
-		// index = strings.Index(word, ":")
-		return true
-	} else if strings.Contains(word, ";") {
-		// index = strings.Index(word, ";")
-		return true
-	}
-	return false
-}
+// func Contains(word string) (bool, int) {
+// 	index := 0
+// 	if strings.Contains(word, ".") {
+// 		index = strings.Index(word, ".")
+// 		return true, index
+// 	} else if strings.Contains(word, ",") {
+// 		index = strings.Index(word, ",")
+// 		return true, index
+// 	} else if strings.Contains(word, "!") {
+// 		index = strings.Index(word, "!")
+// 		return true, index
+// 	} else if strings.Contains(word, "?") {
+// 		index = strings.Index(word, "?")
+// 		return true, index
+// 	} else if strings.Contains(word, ":") {
+// 		index = strings.Index(word, ":")
+// 		return true, index
+// 	} else if strings.Contains(word, ";") {
+// 		index = strings.Index(word, ";")
+// 		return true, index
+// 	}
+// 	return false, index
+// }

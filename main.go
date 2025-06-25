@@ -30,9 +30,16 @@ func main() {
 	slice := strings.Fields(string(file))
 	fmt.Println(string(file))
 	// fmt.Println(slice)
+	slice = functions.ApplayModifications(slice)
+	slc1 := strings.Join(functions.ApplayModifications(slice), " ")
+	slc2 := strings.Join(functions.ApplayModifications(slice), " ")
 
-	slice = functions.Punctuations(slice)
-	slice = functions.ApplayFlags(slice)
+	for slc1 != slc2 {
+		slice = functions.ApplayModifications(slice)
+		slc1 = strings.Join(functions.ApplayModifications(slice), " ")
+		slc2 = strings.Join(functions.ApplayModifications(slice), " ")
+	}
+
 	slice = functions.CLeanSlice(slice)
 	fmt.Println(slice)
 	combined := strings.Join(slice, " ")

@@ -8,10 +8,6 @@ import (
 func IsFlag(word string) bool {
 	// (up, 45)
 	// (up)
-	// ( up)
-	if ((word[1] == ' ' || word[len(word)-2] == ' ') && len(word) > 1) || len(word) == 0 {
-		return false
-	}
 	slice := strings.Fields(word)
 	word = strings.Join(slice, "")
 	if word == "(up)" || word == "(low)" || word == "(cap)" {
