@@ -3,10 +3,10 @@ package functions
 import (
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 func ApplayFlag(slice []string) []string {
-
 	for i := 0; i < len(slice); i++ {
 		if slice[i] == "(up)" {
 			if i != 0 {
@@ -77,6 +77,7 @@ func ApplayFlag(slice []string) []string {
 					// return
 				}
 				if slice[i] == "(low," && !check {
+					isLetter := false
 					if number >= len(slice[:i]) {
 						for j := len(slice[:i]); j > 0; j-- {
 							slice[j-1] = strings.ToLower(slice[j-1])
@@ -84,8 +85,17 @@ func ApplayFlag(slice []string) []string {
 					} else {
 						for j := len(slice[:i]); j > 0; j-- {
 							if number > 0 {
-								slice[j-1] = strings.ToLower(slice[j-1])
-								number--
+								for _, v := range slice[j-1] {
+									if unicode.IsLetter(v) {
+										isLetter = true
+										break
+									}
+								}
+								if isLetter {
+									slice[j-1] = strings.ToLower(slice[j-1])
+									number--
+									isLetter = false
+								}
 							} else {
 								break
 							}
@@ -96,6 +106,7 @@ func ApplayFlag(slice []string) []string {
 					slice = CLeanSlice(slice)
 					i--
 				} else if slice[i] == "(up," && !check {
+					isLetter := false
 					if number >= len(slice[:i]) {
 						for j := len(slice[:i]); j > 0; j-- {
 							slice[j-1] = strings.ToUpper(slice[j-1])
@@ -103,8 +114,17 @@ func ApplayFlag(slice []string) []string {
 					} else {
 						for j := len(slice[:i]); j > 0; j-- {
 							if number > 0 {
-								slice[j-1] = strings.ToUpper(slice[j-1])
-								number--
+								for _, v := range slice[j-1] {
+									if unicode.IsLetter(v) {
+										isLetter = true
+										break
+									}
+								}
+								if isLetter {
+									slice[j-1] = strings.ToUpper(slice[j-1])
+									number--
+									isLetter = false
+								}
 							} else {
 								break
 							}
@@ -115,6 +135,7 @@ func ApplayFlag(slice []string) []string {
 					slice = CLeanSlice(slice)
 					i--
 				} else if slice[i] == "(cap," && !check {
+					isLetter := false
 					if number >= len(slice[:i]) {
 						for j := len(slice[:i]); j > 0; j-- {
 							slice[j-1] = Capitalized(slice[j-1])
@@ -122,8 +143,17 @@ func ApplayFlag(slice []string) []string {
 					} else {
 						for j := len(slice[:i]); j > 0; j-- {
 							if number > 0 {
-								slice[j-1] = Capitalized(slice[j-1])
-								number--
+								for _, v := range slice[j-1] {
+									if unicode.IsLetter(v) {
+										isLetter = true
+										break
+									}
+								}
+								if isLetter {
+									slice[j-1] = Capitalized(slice[j-1])
+									number--
+									isLetter = false
+								}
 							} else {
 								break
 							}

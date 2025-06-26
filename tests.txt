@@ -1,3 +1,5 @@
 hghg' f' (cap, 2) .j 'g' ''
 hghg' f' .j 'g' ''
 hghg' f' .(cap, 2) .j 'g' ''
+a. a. . a. (up, 3)
+aa. aa. ... .. . aa. (cap, 3) .
