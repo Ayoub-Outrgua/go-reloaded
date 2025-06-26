@@ -20,12 +20,7 @@ func ApplayPunctuations(slice []string) []string {
 	return slice
 }
 
-func IsPonctuation(r rune) bool {
-	if r == ',' || r == '.' || r == '!' || r == '?' || r == ';' || r == ':' {
-		return true
-	}
-	return false
-}
+
 
 // func Punctuations(slice []string) []string {
 // 	for i := 0; i < len(slice); i++ {
