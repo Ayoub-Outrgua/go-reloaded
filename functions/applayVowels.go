@@ -10,15 +10,13 @@ func ApplayVowels(slice []string) []string {
 		return []string{}
 	}
 	str := strings.Join(slice, " ")
-	fmt.Println("str : ", str)
-	sliceStr := []rune(str)
-	fmt.Println("sliceStr : ", sliceStr)
 	newStr := ""
-	for i := 0; i < len(sliceStr); i++ {
-		if i+1 < len(sliceStr) && sliceStr[i] == 'a' && IsVowel(sliceStr[i+1]) {
+	for i, v := range str {
+		fmt.Println("v : ", v)
+		if (i+2 < len(str)) && (v == 'a' || v == 'A') && (IsVowel(rune(str[i+2]))) && rune(str[i+1]) == ' ' {
 			newStr += "an"
 		} else {
-			newStr += string(sliceStr[i])
+			newStr += string(v)
 		}
 	}
 	newSlice := []string{}
@@ -27,7 +25,8 @@ func ApplayVowels(slice []string) []string {
 }
 
 func IsVowel(r rune) bool {
-	if r == 'a' || r == 'e' || r == 'i' || r == 'o' || r == 'u' || r == 'h' {
+	if r == 'a' || r == 'e' || r == 'i' || r == 'o' || r == 'u' || r == 'h' ||
+		r == 'A' || r == 'E' || r == 'I' || r == 'O' || r == 'U' || r == 'H' {
 		return true
 	}
 	return false
