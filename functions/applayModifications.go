@@ -13,16 +13,6 @@ func ApplayModifications(str string) string {
 		words = ApplayPunctuations(words)
 		words = ApplayQuotes(words)
 		words = ApplayVowels(words)
-
-		// for {
-		// 	fmt.Println("inside for ...")
-		// 	transformedWords := ApplayFlag(words)
-		// 	if reflect.DeepEqual(transformedWords, words) {
-		// 		break
-		// 	}
-		// 	words = transformedWords
-		// }
-
 		FinalWordsSlice = append(FinalWordsSlice, words)
 	}
 

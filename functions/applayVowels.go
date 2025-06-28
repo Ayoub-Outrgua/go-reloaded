@@ -1,8 +1,8 @@
 package functions
 
 import (
-	"fmt"
 	"strings"
+	"unicode"
 )
 
 func ApplayVowels(slice []string) []string {
@@ -12,9 +12,10 @@ func ApplayVowels(slice []string) []string {
 	str := strings.Join(slice, " ")
 	newStr := ""
 	for i, v := range str {
-		fmt.Println("v : ", string(v))
-		if i+2 < len(str) && i-1 >= 0 && (v == 'a' || v == 'A') && IsVowel(rune(str[i+2])) && str[i+1] == ' ' && str[i-1] == ' ' {
-			newStr += "an"
+		if i+2 < len(str) && i-1 > 0 && (v == 'a' || v == 'A') && IsVowel(rune(str[i+2])) && str[i+1] == ' ' && !unicode.IsLetter(rune(str[i-1])) {
+			newStr += string(v) + "n"
+		} else if i+2 < len(str) && i == 0 && (v == 'a' || v == 'A') && IsVowel(rune(str[i+2])) && str[i+1] == ' ' {
+			newStr += string(v) + "n"
 		} else {
 			newStr += string(v)
 		}
