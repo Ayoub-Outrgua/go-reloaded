@@ -5,22 +5,35 @@ import "strings"
 func ApplayPunctuations(slice []string) []string {
 	str := strings.Join(slice, " ")
 	strFinal := ""
-	for i := 0; i < len(str); i++ {
-		if i+1 <= len(str)-1 && str[i] == ' ' && IsPonctuation(rune(str[i+1])) {
+	sliceStr := []rune(str)
+	for i := 0; i < len(sliceStr); i++ {
+		if i+1 <= len(sliceStr)-1 && sliceStr[i] == ' ' && IsPonctuation(sliceStr[i+1]) {
 			continue
 		}
-		if i+1 <= len(str)-1 && IsPonctuation(rune(str[i])) && str[i+1] != ' ' &&
-			!IsPonctuation(rune(str[i+1])) {
-			strFinal += string(str[i]) + " "
+		if i+1 <= len(sliceStr)-1 && IsPonctuation(sliceStr[i]) && sliceStr[i+1] != ' ' &&
+			!IsPonctuation(sliceStr[i+1]) {
+			strFinal += string(sliceStr[i]) + " "
 		} else {
-			strFinal += string(str[i])
+			strFinal += string(sliceStr[i])
 		}
 	}
+
+	// for i,v := range str {
+	// 	if i+1 <= len(str)-1 && v == ' ' && IsPonctuation(v) {
+	// 		continue
+	// 	}
+	// 	if i+1 <= len(str)-1 && IsPonctuation(v) && str[i+1] != ' ' &&
+	// 		!IsPonctuation(rune(str[i+1])) {
+	// 		strFinal += string(v) + " "
+	// 	} else {
+	// 		strFinal += string(v)
+	// 	}
+	// }
+
+
 	slice = strings.Fields(strFinal)
 	return slice
 }
-
-
 
 // func Punctuations(slice []string) []string {
 // 	for i := 0; i < len(slice); i++ {
