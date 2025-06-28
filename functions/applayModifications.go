@@ -12,6 +12,7 @@ func ApplayModifications(str string) string {
 		words = ApplayFlag(words)
 		words = ApplayPunctuations(words)
 		words = ApplayQuotes(words)
+		words = ApplayVowels(words)
 
 		// for {
 		// 	fmt.Println("inside for ...")
@@ -25,9 +26,6 @@ func ApplayModifications(str string) string {
 		FinalWordsSlice = append(FinalWordsSlice, words)
 	}
 
-	// slice = ApplayFlag(slice)
-	// slice = ApplayPunctuations(slice)
-	// slice = ApplayQuotes(slice)
 	strFinal := ""
 	for i, v := range FinalWordsSlice {
 		v = CLeanSlice(v)

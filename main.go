@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// slice := strings.Fields(string(file))
-	fmt.Println(string(file))
+	// fmt.Println(string(file))
 	// fmt.Println(slice)
 	str := functions.ApplayModifications(string(file))
 	// slice = functions.CLeanSlice(slice)
