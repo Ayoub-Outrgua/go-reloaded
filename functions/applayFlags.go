@@ -1,6 +1,7 @@
 package functions
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 	"unicode"
@@ -31,14 +32,14 @@ func ApplayFlag(slice []string) []string {
 			i--
 		} else if slice[i] == "(bin)" {
 			if i != 0 {
-				check := false
+				checkError := false
 				num, err := strconv.ParseInt(slice[i-1], 2, 64)
 				if err != nil {
-					// fmt.Println("Error: this is not valid bin")
-					check = true
+					fmt.Println("Error: this is invalide (bin) :", err)
+					checkError = true
 					// return
 				}
-				if !check {
+				if !checkError {
 					slice[i-1] = strconv.Itoa(int(num))
 				}
 			}
@@ -47,14 +48,14 @@ func ApplayFlag(slice []string) []string {
 			i--
 		} else if slice[i] == "(hex)" {
 			if i != 0 {
-				check := false
+				checkError := false
 				num, err := strconv.ParseInt(slice[i-1], 16, 64)
 				if err != nil {
-					// fmt.Println("Error: this is not valid hex")
-					check = true
+					fmt.Println("Error: this is invalide (hex) :", err)
+					checkError = true
 					// return
 				}
-				if !check {
+				if !checkError {
 					slice[i-1] = strconv.Itoa(int(num))
 				}
 			}
@@ -73,6 +74,7 @@ func ApplayFlag(slice []string) []string {
 				number, err := strconv.Atoi(string(nb))
 				if err != nil {
 					// fmt.Println("Error: this is not valid number")
+					fmt.Println("Error: this is invalide number :", err)
 					continue
 					// return
 				}

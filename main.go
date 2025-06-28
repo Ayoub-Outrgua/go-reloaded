@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"goreload/functions"
 )
@@ -29,10 +28,21 @@ func main() {
 		return
 	}
 
-	slice := strings.Fields(string(file))
+	// slice := strings.Fields(string(file))
 	fmt.Println(string(file))
 	// fmt.Println(slice)
-	slice = functions.ApplayModifications(slice)
+	str := functions.ApplayModifications(string(file))
+	// slice = functions.CLeanSlice(slice)
+	// fmt.Println(slice)
+	// combined := strings.Join(slice, " ")
+	byteSlice := []byte(str)
+	erre := os.WriteFile(outputFile, byteSlice, 0o644)
+	if erre != nil {
+		fmt.Println("error in write file")
+		return
+	}
+
+	// slice = functions.ApplayModifications(slice)
 	// slc1 := strings.Join(functions.ApplayModifications(slice), " ")
 	// slc2 := strings.Join(functions.ApplayModifications(slice), " ")
 
@@ -42,13 +52,13 @@ func main() {
 	// 	slc2 = strings.Join(functions.ApplayModifications(slice), " ")
 	// }
 
-	slice = functions.CLeanSlice(slice)
-	fmt.Println(slice)
-	combined := strings.Join(slice, " ")
-	byteSlice := []byte(combined)
-	erre := os.WriteFile(outputFile, byteSlice, 0o644)
-	if erre != nil {
-		fmt.Println("error in write file")
-		return
-	}
+	// slice = functions.CLeanSlice(slice)
+	// fmt.Println(slice)
+	// combined := strings.Join(slice, " ")
+	// byteSlice := []byte(combined)
+	// erre := os.WriteFile(outputFile, byteSlice, 0o644)
+	// if erre != nil {
+	// 	fmt.Println("error in write file")
+	// 	return
+	// }
 }

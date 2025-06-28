@@ -48,7 +48,7 @@ func ApplayQuotes(slice []string) []string {
 		if checkClose {
 			if indexClose+1 < len(sliceStr) && (IsPonctuation(sliceStr[indexClose+1]) || sliceStr[indexClose+1] == ' ') {
 				newStr += " '" + strings.TrimSpace(string(sliceStr[indexOpen+1:indexClose])) + "'"
-			} else if indexClose+1 < len(sliceStr) {
+			} else {
 				newStr += " '" + strings.TrimSpace(string(sliceStr[indexOpen+1:indexClose])) + "' "
 			}
 			checkClose = false
