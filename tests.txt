@@ -6,7 +6,7 @@ aa. aa. ... .. . aa. (cap, 3) .
 ' '  '  '  ' sa'm gt' '
 éghg (cap) ' f' (cap, 2) .j 'g' ''
 a a apple
-
+Nested modifications: (up, 2 (low, 1)) should this work?
 
 
 

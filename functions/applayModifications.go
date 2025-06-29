@@ -6,21 +6,21 @@ import (
 
 func ApplayModifications(str string) string {
 	lines := strings.Split(str, "\n")
-	var FinalWordsSlice [][]string
+	var FinalSlice [][]string
 	for _, line := range lines {
 		words := strings.Fields(line)
 		words = ApplayFlag(words)
 		words = ApplayPunctuations(words)
 		words = ApplayQuotes(words)
 		words = ApplayVowels(words)
-		FinalWordsSlice = append(FinalWordsSlice, words)
+		FinalSlice = append(FinalSlice, words)
 	}
 
 	strFinal := ""
-	for i, v := range FinalWordsSlice {
+	for i, v := range FinalSlice {
 		v = CLeanSlice(v)
 		strFinal += strings.Join(v, " ")
-		if i < len(FinalWordsSlice)-1 {
+		if i < len(FinalSlice)-1 {
 			strFinal += "\n"
 		}
 	}

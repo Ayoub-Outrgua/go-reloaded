@@ -1,4 +1,1 @@
-ghghg . (cap)
-
-' fd'f drf 'fdf ... '' fdf.' f,f'
-éé. (up) ÉÉÉÉÉ' (low)  ''a apple ''
+Nested modifications: (up, 2 (low, 1)) should this work?
