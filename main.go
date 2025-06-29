@@ -10,7 +10,7 @@ import (
 
 func main() {
 	if len(os.Args) != 3 {
-		fmt.Println("the args are not exist!")
+		fmt.Println("Error: the arguments are not valid!")
 		return
 	}
 
@@ -18,22 +18,22 @@ func main() {
 	outputFile := os.Args[2]
 
 	if !strings.HasSuffix(outputFile, ".txt") || !strings.HasSuffix(inputFile, ".txt") {
-		fmt.Println("one of the args not correct!!!")
+		fmt.Println("Error: one of the arguments is not a text file!")
 		return
 	}
 
-	file, err := os.ReadFile(inputFile)
-	if err != nil {
-		fmt.Println("Error in read file ", err)
+	file, readError := os.ReadFile(inputFile)
+	if readError != nil {
+		fmt.Println("File read error! ", readError)
 		return
 	}
 
 	str := functions.ApplayModifications(string(file))
 
-	byteSlice := []byte(str)
-	erre := os.WriteFile(outputFile, byteSlice, 0o644)
-	if erre != nil {
-		fmt.Println("Error in write file ", erre)
+	sliceOfByte := []byte(str)
+	writeError := os.WriteFile(outputFile, sliceOfByte, 0o644)
+	if writeError != nil {
+		fmt.Println("File write error! ", writeError)
 		return
 	}
 
