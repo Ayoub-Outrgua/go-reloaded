@@ -17,7 +17,7 @@ func main() {
 	inputFile := os.Args[1]
 	outputFile := os.Args[2]
 
-	if !strings.HasSuffix(outputFile, ".txt") || !strings.HasSuffix(inputFile, ".txt") {
+	if !strings.HasSuffix(outputFile, ".txt") || !strings.HasSuffix(inputFile, ".txt") || len(outputFile) < 5{
 		fmt.Println("Error: one of the arguments is not a text file!")
 		return
 	}
