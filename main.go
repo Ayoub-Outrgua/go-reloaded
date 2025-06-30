@@ -24,7 +24,7 @@ func main() {
 
 	file, readError := os.ReadFile(inputFile)
 	if readError != nil {
-		fmt.Println("File read error! ", readError)
+		fmt.Println("File read error!", readError)
 		return
 	}
 
@@ -33,8 +33,7 @@ func main() {
 	sliceOfByte := []byte(str)
 	writeError := os.WriteFile(outputFile, sliceOfByte, 0o644)
 	if writeError != nil {
-		fmt.Println("File write error! ", writeError)
+		fmt.Println("File write error!", writeError)
 		return
 	}
-
 }
