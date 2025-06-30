@@ -22,10 +22,6 @@ func ApplayQuotes(slice []string) []string {
 		return []string{string(str[0])}
 	}
 
-	////////////////////////////////////////////////////
-
-	////////////////////////////////////////////////////
-
 	for i := 0; i < len(sliceStr); i++ {
 		if i+1 < len(sliceStr) && i-1 >= 0 && IsQuotes(sliceStr[i]) && unicode.IsLetter(sliceStr[i+1]) && unicode.IsLetter(sliceStr[i-1]) {
 			newStr += string(sliceStr[i])

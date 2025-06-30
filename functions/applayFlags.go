@@ -36,7 +36,6 @@ func ApplayFlag(slice []string) []string {
 				if err != nil {
 					fmt.Println("Error: this is invalide (bin) :", err)
 					checkError = true
-					// return
 				}
 				if !checkError {
 					slice[i-1] = strconv.Itoa(int(num))
@@ -52,7 +51,6 @@ func ApplayFlag(slice []string) []string {
 				if err != nil {
 					fmt.Println("Error: this is invalide (hex) :", err)
 					checkError = true
-					// return
 				}
 				if !checkError {
 					slice[i-1] = strconv.Itoa(int(num))
