@@ -57,6 +57,7 @@ func ApplayQuotes(slice []string) []string {
 
 	newSlice := []string{}
 	newSlice = []string{newStr}
+	newSlice = CLeanSlice(newSlice)
 	return newSlice
 }
 
