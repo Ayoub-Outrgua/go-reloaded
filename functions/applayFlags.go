@@ -69,7 +69,7 @@ func ApplayFlag(slice []string) []string {
 				nb := strings.TrimRight(slice[i+1], ")")
 				number, err := strconv.Atoi(string(nb))
 				if err != nil {
-					fmt.Println("Error: this is invalide number :", err)
+					fmt.Println("Error: ", err)
 					continue
 				}
 				if slice[i] == "(low," && !check {
