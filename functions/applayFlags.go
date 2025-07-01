@@ -60,11 +60,11 @@ func ApplayFlag(slice []string) []string {
 			slice = CLeanSlice(slice)
 			i--
 		} else if slice[i] == "(up," || slice[i] == "(low," || slice[i] == "(cap," {
-			check := false
+			checkInvalidFlag := false
 			if i+1 < len(slice) {
 				if strings.Count(slice[i+1], ")") != 1 {
 					fmt.Println("Error: this is not valid flag : ", string(slice[i]), string(slice[i+1]))
-					check = true
+					checkInvalidFlag = true
 				}
 				nb := strings.TrimRight(slice[i+1], ")")
 				number, err := strconv.Atoi(string(nb))
@@ -72,7 +72,7 @@ func ApplayFlag(slice []string) []string {
 					fmt.Println("Error: ", err)
 					continue
 				}
-				if slice[i] == "(low," && !check {
+				if slice[i] == "(low," && !checkInvalidFlag {
 					if number >= len(slice[:i]) {
 						for j := len(slice[:i]); j > 0; j-- {
 							slice[j-1] = strings.ToLower(slice[j-1])
@@ -91,7 +91,7 @@ func ApplayFlag(slice []string) []string {
 					slice[i+1] = ""
 					slice = CLeanSlice(slice)
 					i--
-				} else if slice[i] == "(up," && !check {
+				} else if slice[i] == "(up," && !checkInvalidFlag {
 					if number >= len(slice[:i]) {
 						for j := len(slice[:i]); j > 0; j-- {
 							slice[j-1] = strings.ToUpper(slice[j-1])
@@ -110,7 +110,7 @@ func ApplayFlag(slice []string) []string {
 					slice[i+1] = ""
 					slice = CLeanSlice(slice)
 					i--
-				} else if slice[i] == "(cap," && !check {
+				} else if slice[i] == "(cap," && !checkInvalidFlag {
 					if number >= len(slice[:i]) {
 						for j := len(slice[:i]); j > 0; j-- {
 							slice[j-1] = Capitalized(slice[j-1])

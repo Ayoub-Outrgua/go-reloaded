@@ -7,12 +7,12 @@ import (
 
 func Capitalized(s string) string {
 	str := ""
-	check := false
+	checkFirstLitter := false
 	for _, v := range s {
-		if unicode.IsLetter(v) && !check {
+		if unicode.IsLetter(v) && !checkFirstLitter {
 			str += strings.ToUpper(string(v))
-			check = true
-		} else if check {
+			checkFirstLitter = true
+		} else if checkFirstLitter {
 			str += strings.ToLower(string(v))
 		} else if !(unicode.IsLetter(v)) {
 			str += string(v)

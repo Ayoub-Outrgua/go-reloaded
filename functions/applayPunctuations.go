@@ -3,7 +3,6 @@ package functions
 import "strings"
 
 func ApplayPunctuations(slice []string) []string {
-	
 	str := strings.Join(slice, " ")
 	strFinal := ""
 	sliceStr := []rune(str)
